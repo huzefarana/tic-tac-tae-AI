@@ -24,6 +24,8 @@ def player(board):
     """
     if board == initial_state():
         return X
+    if terminal(board):
+        return None
     else:
         x_count = 0
         o_count = 0
