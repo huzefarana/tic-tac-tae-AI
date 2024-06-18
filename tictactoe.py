@@ -69,15 +69,32 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    for i in range(3):
-        if board[i][0] == board[i][1] == board[i][2]:
-            return board[i][0]
-        if board[0][i] == board[1][i] == board[2][i]:
-            return board[0][i]
-    if board[0][0] == board[1][1] == board[2][2]:
-        return board[0][0]
-    if board[0][2] == board[1][1] == board[2][0]:
-        return board[0][2]
+    f# Row checking
+    for row in board:
+        if row.count(X) == 3:
+            return X
+        if row.count(O) == 3:
+            return O
+
+    # Column checking
+    for col in range(len(board[0])):
+        if board[0][col] == X and board[1][col] == X and board[2][col] == X:
+            return X
+        if board[0][col] == O and board[1][col] == O and board[2][col] == O:
+            return O
+
+    # Diagonal checking
+    if board[0][0] == X and board[1][1] == X and board[2][2] == X:
+        return X
+    if board[0][0] == O and board[1][1] == O and board[2][2] == O:
+        return O
+
+    # Anti-Diagonal checking
+    if board[0][2] == X and board[1][1] == X and board[2][0] == X:
+        return X
+    if board[0][2] == O and board[1][1] == O and board[2][0] == O:
+        return O
+
     return None
 
 
